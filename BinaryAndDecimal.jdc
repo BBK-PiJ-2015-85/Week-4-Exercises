@@ -1,0 +1,43 @@
+String x = decimal2binary(127);
+println (x);
+
+int power(int intB, int intE) {
+	int ans = intB;
+	if (intE == 0) {
+		return 1;
+	}
+	for (int i = intE; i > 1; i--){
+		ans = ans * intB;
+	}	
+	return ans;
+}
+
+int power2(int intE){
+	return power(2, intE);
+}
+
+int binary2decimal(String binary){
+	int ans = 0;
+	for (int i = 0; i < binary.length(); i++){
+		if (binary.substring(i, i+1).equals("1")){
+			ans = ans + power2(binary.length() - (i + 1) );
+		}
+	}
+	return ans;
+}
+
+String decimal2binary(int decimal){
+	String ans = "";
+	String binary = "";
+	for (int i = decimal; i != 0; i = i / 2){
+		if (i % 2 == 0){
+			ans = ans + "0";
+		} else {
+			ans = ans + "1";
+		}
+	}
+	for (int i = ans.length(); i > 0; i--){
+		binary = binary + ans.substring(i-1, i);
+	}
+	return binary;
+}
