@@ -1,5 +1,27 @@
-String x = decimal2binary(127);
-println (x);
+boolean running = true;
+while (running) {
+	println();
+	println ("What would you like to do?");
+	println ("1 - Convert a binary number to decimal.");
+	println ("2 - Convert a decimal number to binary.");
+	println ("0 - Exit.");
+	int option = readInt();
+	readLine();
+	String str;
+	switch (option){
+		case 1: print ("Please enter the binary number to convert: ");
+				str = readLine();
+				println (str + " as a decimal is " + binary2decimal(str) + ".");
+				break;
+		case 2: print ("Please enter the decimal number to convert: ");
+				int decimal = readInt();
+				println (decimal + " as a binary number is " + decimal2binary(decimal) + ".");
+				break;
+		case 0: running = false;
+				break;
+		default: println("Invalid option. Please try again.");
+	}
+}
 
 int power(int intB, int intE) {
 	int ans = intB;
