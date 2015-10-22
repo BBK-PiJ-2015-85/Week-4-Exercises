@@ -1,0 +1,40 @@
+MortgageCalc mortgage = new MortgageCalc();
+print ("Please enter the total amount borrowed for your mortgage: ");
+mortgage.total = readDouble();
+print ("Please enter the number of years to pay it back: ");
+mortgage.cost = readDouble();
+print ("Please enter the mortgage rate: ");
+mortgage.rate = readDouble();
+
+println (mortgage.totalToBePaid());
+println (mortgage.yearlyCost());
+println (mortgage.interestGone());
+
+class MortgageCalc {
+	double total;
+	double cost;
+	double rate;
+	
+	double totalToBePaid(){
+		double ans;
+		ans = (total * (rate / 100) * cost) + total;
+		ans = Math.round(ans * 100);
+		ans = ans / 100;
+		return ans;
+	}
+	
+	double yearlyCost(){
+		double ans = this.totalToBePaid() / cost;
+		ans = Math.round(ans * 100);
+		ans = ans / 100;
+		return ans;
+	}
+	
+	double interestGone(){
+		double ans = (this.totalToBePaid() - total) / this.yearlyCost();
+		ans = Math.round(ans * 100);
+		ans = ans / 100;
+		return ans;
+	}
+}
+
