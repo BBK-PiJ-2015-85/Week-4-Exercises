@@ -1,0 +1,64 @@
+Point point = new Point();
+point.x = 1;
+point.y = 1;
+
+Point point2 = new Point();
+point2.x = 3;
+point2.y = 3;
+
+println ("Current point " + point.x + ", " + point.y);
+println ("Moving to 4, 4.");
+point.moveTo(4, 4);
+println ("Current point " + point.x + ", " + point.y);
+println ("Moving to point2.");
+point.moveTo(point2);
+println ("Current point " + point.x + ", " + point.y);
+println ("Cloning current point.");
+Point copy = point.clone();
+println ("Moving to 4, 7.");
+point.moveTo(4, 7); 
+Point opposite = point.opposite();
+println ("Current point " + point.x + ", " + point.y);
+println ("Opposite point " + opposite.x + ", " + opposite.y);
+println ("Current copy " + copy.x + ", " + copy.y);
+println ("Distance to origin is " + point.distanceToOrigin() + ".");
+
+
+class Point {
+	double x;
+	double y;
+	
+	double distanceTo(Point ansPoint){
+		return Math.sqrt(((this.x - ansPoint.x) * (this.x - ansPoint.x)) + ((this.y - ansPoint.y) * (this.y - ansPoint.y)));
+	}
+	
+	double distanceToOrigin(){
+		Point origin = new Point();
+		origin.x = 0;
+		origin.y = 0;
+		return distanceTo(origin);
+	}
+	
+	void moveTo(double x, double y){
+		this.x = x;
+		this.y = y;
+	}
+	void moveTo(Point newPoint){
+		this.x = newPoint.x;
+		this.y = newPoint.y;
+	}
+	
+	public Point clone(){
+		Point copy = new Point();
+		copy.moveTo(x, y);
+		return copy;
+	}
+	
+	public Point opposite(){
+		Point opposite = new Point();
+		opposite.x = this.x * (-1);
+		opposite.y = this.y * (-1);
+		return opposite;
+	}
+}
+
