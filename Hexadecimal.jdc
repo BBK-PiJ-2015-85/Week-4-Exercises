@@ -1,0 +1,73 @@
+print ("Please enter a decimal or hexadecimal number to convert: ");
+String str = readLine();
+if (str.substring(0, 1).equals("0") && str.substring(1, 2).equals("x")){
+	println (hexadecimal2decimal(str));
+} else {
+	println (decimal2hexadecimal(str));
+}
+
+int hexadecimal2decimal(String str){
+	String hex = str.substring(2);	
+	int value = 0;
+	int total = 0;
+	for (int i = 0; i < hex.length(); i++){		
+		if (hex.substring(i, i+1).equals("a")){
+			value = 10;
+		} else if (hex.substring(i, i+1).equals("b")){
+			value = 11;
+		} else if (hex.substring(i, i+1).equals("c")){
+			value = 12;
+		} else if (hex.substring(i, i+1).equals("d")){
+			value = 13;
+		} else if (hex.substring(i, i+1).equals("e")){
+			value = 14;
+		} else if (hex.substring(i, i+1).equals("f")){
+			value = 15;
+		} else {
+			value = Integer.parseInt(hex.substring(i, i+1));
+		}
+		int result = 0;
+		int power = 1;
+		if ((hex.length() - 1) - i == 0){
+			result = result + value;
+		} else {
+			for (int x = hex.length() - 1 - i; x > 0; x--){
+				power = power * 16; 
+			}
+			result = value * power;	
+		}
+		total = total + result;		
+			
+	}
+	return total;
+}
+
+String decimal2hexadecimal(String hex){
+	String ans = "";
+	String reverse = "0x";
+	int dec = Integer.parseInt(hex);
+	for (int i = dec; i != 0; i = i / 16){
+		dec = i % 16;
+		if (dec < 10){
+			ans = ans + dec;
+		} else {
+			if (dec == 10){
+				ans = ans + "a";
+			} else if (dec == 11){
+				ans = ans + "b";
+			} else if (dec == 12){
+				ans = ans + "c";
+			} else if (dec == 13){
+				ans = ans + "d";
+			} else if (dec == 14){
+				ans = ans + "e";
+			} else {
+				ans = ans + "f";	
+			}
+		}
+	}
+	for (int x = ans.length(); x > 0; x--){
+		reverse = reverse + ans.substring(x-1, x);
+	}
+	return reverse;
+}
